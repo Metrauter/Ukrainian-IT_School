@@ -1,17 +1,19 @@
 package classworks.lesson6;
 
 public class PhoneDemo {
-    public void setMyPhone(Phone myPhone) {
+    public static void main(String[] args) {
 
+        Phone Phone1 = new Phone("LG", "0678269585", 154.3);
+        Phone Phone2 = new Phone("Nokia", "0678269585");
+        Phone Phone3 = new Phone();
 
+        System.out.println("Model: " + Phone1.getModel());
+        System.out.println("Number: " + Phone1.getNumber());
+        System.out.println("Weight: " + Phone1.getWeight());
 
-    Phone myPhone1 = new Phone();
-    Phone myPhone2 = new Phone();
-    Phone myPhone3 = new Phone();
-
-    myPhone1.number= "0678269585";
-    myPhone1.model = "LG";
-    myPhone1.weight = 154.3;
-
+        Phone1.receiveCall("мама");
+        System.out.println(Phone1.getNumber());
+        Phone1.receiveCall("Мама ", "0678269585");
+        Phone1.sendMessage("0678269585");
     }
 }
