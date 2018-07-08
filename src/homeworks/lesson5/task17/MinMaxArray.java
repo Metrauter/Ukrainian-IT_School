@@ -22,8 +22,11 @@ public class MinMaxArray {
         int k = max(ar1[4]);
         System.out.println(Arrays.deepToString(ar1) + "\n");
         int[][] ar2 = {
-                {a, b, c, d, e},
-                {f, g, h, i, k}};
+                {a, b},
+                {c, d},
+                {e, f},
+                {g, h},
+                {i, k}};
         System.out.println(Arrays.deepToString(ar2));
     }
 
