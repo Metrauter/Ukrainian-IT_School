@@ -4,6 +4,7 @@ public class Rectangle extends Shape {
     double x;
     double x1;
     double y;
+    double y1;
 
     public Rectangle(double x, double x1, double y, double y1) {
         this.x = x;
@@ -44,8 +45,6 @@ public class Rectangle extends Shape {
     public void setY1(double y1) {
         this.y1 = y1;
     }
-
-    double y1;
 
     public String drow() {
         System.out.println("Рисую круг " + getColour() + " цвета " + "c координатами " + getA() + " " + getB() + " и диаметром " + getD());

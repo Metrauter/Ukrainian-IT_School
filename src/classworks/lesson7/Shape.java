@@ -1,6 +1,7 @@
 package classworks.lesson7;
 
 public abstract class Shape {
+    String colour;
     public Shape() {
     }
 
@@ -13,7 +14,5 @@ public abstract class Shape {
         this.colour = colour;
     }
 
-    String colour;
-
-    public abstract String drow();
+    public abstract void drow();
 }

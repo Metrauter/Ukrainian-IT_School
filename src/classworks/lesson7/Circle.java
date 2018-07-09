@@ -36,8 +36,8 @@ public class Circle extends Shape{
         this.d = d;
     }
 
-    public String drow() {
-        System.out.println("Рисую круг " + getColour() + " цвета " + "c координатами " + getA() + " " + getB() + " и диаметром " + getD());
-    return a*b*d;
+    public void drow() {
+        System.out.println("Рисую круг " + getColour() + " цвета " + "c координатами " + getA()
+                + " " + getB() + " и диаметром " + getD());
     }
 }
