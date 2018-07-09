@@ -3,17 +3,19 @@ package classworks.lesson6;
 public class PhoneDemo {
     public static void main(String[] args) {
 
-        Phone Phone1 = new Phone("LG", "0678269585", 154.3);
-        Phone Phone2 = new Phone("Nokia", "0678269585");
-        Phone Phone3 = new Phone();
+        Phone phone1 = new Phone("LG", "0678269585", 154.3);
+        Phone phone2 = new Phone("Nokia", "0678269585");
+        Phone phone3 = new Phone();
 
-        System.out.println("Model: " + Phone1.getModel());
-        System.out.println("Number: " + Phone1.getNumber());
-        System.out.println("Weight: " + Phone1.getWeight());
+        System.out.println("Model: " + phone1.getModel());
+        System.out.println("Number: " + phone1.getNumber());
+        System.out.println("Weight: " + phone1.getWeight());
 
-        Phone1.receiveCall("мама");
-        System.out.println(Phone1.getNumber());
-        Phone1.receiveCall("Мама ", "0678269585");
-        Phone1.sendMessage("0678269585");
+        phone1.receiveCall("мама");
+        System.out.println(phone1.getNumber());
+        phone1.receiveCall("Мама ", "0678269585");
+        phone1.sendMessage("0678269585");
+
+        System.out.println(Phone.getCountInstance());
     }
 }

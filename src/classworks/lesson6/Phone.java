@@ -4,18 +4,21 @@ public class Phone {
     private String number;
     private String model;
     private double weight;
+    private static int count = 0;
 
     Phone(String model, String number, double weight) {
         this(model, number);
         this.weight = weight;
     }
 
-    Phone(String m, String n) {
+    public Phone(String m, String n) {
         model = m;
         number = n;
+        count++;
     }
 
-    Phone() {
+    public Phone() {
+        count++;
     }
 
     public String getNumber() {
@@ -40,6 +43,11 @@ public class Phone {
 
     public void setNumber(String number) {
         this.number = number;
+
+    }
+
+    static int getCountInstance() {
+        return count;
     }
 
     void receiveCall(String name, String number) {
