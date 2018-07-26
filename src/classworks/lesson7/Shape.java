@@ -1,17 +1,18 @@
 package classworks.lesson7;
 
 public abstract class Shape {
-    String colour;
+    private String colour;
+
     public Shape() {
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
     public String getColour() {
 
         return colour;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
     }
 
     public abstract void drow();

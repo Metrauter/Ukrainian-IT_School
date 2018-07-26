@@ -1,28 +1,18 @@
 package classworks.lesson7;
 
 public class Rectangle extends Shape {
-    double x;
-    double x1;
-    double y;
-    double y1;
+    private double x1, x2, y1, y2;
 
-    public Rectangle(double x, double x1, double y, double y1) {
-        this.x = x;
+    public Rectangle(double x1, double x2, double y1, double y2) {
+        this.setColour("зелёного");
         this.x1 = x1;
-        this.y = y;
+        this.x2 = x2;
         this.y1 = y1;
+        this.y2 = y2;
     }
 
-    public double getX() {
+    private double getX1() {
 
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getX1() {
         return x1;
     }
 
@@ -30,12 +20,12 @@ public class Rectangle extends Shape {
         this.x1 = x1;
     }
 
-    public double getY() {
-        return y;
+    public double getX2() {
+        return x2;
     }
 
-    public void setY(double y) {
-        this.y = y;
+    public void setX2(double x2) {
+        this.x2 = x2;
     }
 
     public double getY1() {
@@ -46,7 +36,16 @@ public class Rectangle extends Shape {
         this.y1 = y1;
     }
 
-    public String drow() {
-        System.out.println("Рисую круг " + getColour() + " цвета " + "c координатами " + getA() + " " + getB() + " и диаметром " + getD());
+    public double getY2() {
+        return y2;
+    }
+
+    public void setY2(double y2) {
+        this.y2 = y2;
+    }
+
+    public void drow() {
+        System.out.println("Рисую квадрат " + getColour() + " цвета " + "c координатами " + getX1() + " " + getX2() + " " +
+                getY1() + " " + getY2());
     }
 }

@@ -1,4 +1,4 @@
-package homeworks.lesson7;
+package homeworks.lesson7.task3;
 
 
 public class Matrix {

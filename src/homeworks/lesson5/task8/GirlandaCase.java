@@ -7,7 +7,7 @@ public class GirlandaCase {
         GirlandaCase g = new GirlandaCase();
         Scanner scn = new Scanner(System.in);
         int ger = 7654;
-        for (; ; ) {
+        while(true) {
             System.out.println("Выберите пункт: ");
             System.out.println("1. Режим мигания");
             System.out.println("2. Режим бегущей строки");

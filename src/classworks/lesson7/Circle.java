@@ -1,11 +1,12 @@
 package classworks.lesson7;
 
-public class Circle extends Shape{
-    double a;
-    double b;
-    double d;
+public class Circle extends Shape {
+
+    private double a, b, d;
+
 
     public Circle(double a, double b, double d) {
+        this.setColour("красного");
         this.a = a;
         this.b = b;
         this.d = d;

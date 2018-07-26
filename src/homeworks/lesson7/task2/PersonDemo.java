@@ -1,4 +1,4 @@
-package homeworks.lesson7;
+package homeworks.lesson7.task2;
 
 public class PersonDemo {
     public static void main(String[] args) {
