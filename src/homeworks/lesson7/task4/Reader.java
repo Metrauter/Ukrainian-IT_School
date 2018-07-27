@@ -75,13 +75,17 @@ public class Reader {
         System.out.println(getName() + " вернул " + c + " книги");
     }
 
-    void returnBook(String... books) {
+    public void returnBook(String... books) {
         System.out.println(getName() + " вернул кинги: ");
         for (String n : books) {
             System.out.println(n + " ");
         }
     }
-    void returnBook(Book b) {
-        System.out.println(getName() + " вернул кинги: " + b.getBookName());
+
+    public void returnBook(Book... b) {
+        for (Book n : b) {
+            System.out.println(n + " ");
+            System.out.println(getName() + " вернул кинги: " + n.getBookName());
+        }
     }
 }
