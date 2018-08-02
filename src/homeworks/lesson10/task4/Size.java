@@ -1,4 +1,4 @@
-package homeworks.lesson10.task3;
+package homeworks.lesson10.task4;
 
 public enum Size {
     XXS(32) {
