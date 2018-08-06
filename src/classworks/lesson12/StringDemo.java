@@ -1,4 +1,4 @@
-package classworks.lessons12;
+package classworks.lesson12;
 
 public class StringDemo {
     public static void main(String[] args) {
