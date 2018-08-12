@@ -2,22 +2,30 @@ package homeworks.lesson10.task4;
 
 public class Studio {
     public static void main(String[] args) {
-        Pants pantsM = new Pants(3, 21, "белого");
-        Pants pantsW = new Pants(2, 23, "красного");
-        Skirt skirt = new Skirt(2, 54, "чёрного");
-        Tie tie = new Tie(2, 9, "чёрного");
-        TShirt tShirtM = new TShirt(2, 24, "белого");
-        TShirt tShirtW = new TShirt(3, 22, "белого");
+        Pants pants = new Pants(Size.XXS, 21, "белого");
+        Skirt skirt = new Skirt(Size.M, 54, "чёрного");
+        Tie tie = new Tie(Size.XS, 9, "чёрного");
+        TShirt tShirt = new TShirt(Size.L, 24, "белого");
 
-        Cloth[] cloths = {pantsM, pantsW, skirt, tie, tShirtM, tShirtW};
+        Cloth[] cloths = {pants, skirt, tie, tShirt};
 
-            pantsM.clotheMan();
-            tie.clotheMan();
-            tShirtM.clotheMan();
+        clothMan(cloths);
+        clothWoman(cloths);
+    }
 
-            pantsW.clotheWoman();
-            skirt.clotheWoman();
-            tShirtW.clotheWoman();
+    public static void clothMan(Cloth[] cloths) {
+        for (Cloth cloth : cloths) {
+            if (cloth instanceof ManCloth) {
+                ((ManCloth) cloth).clotheMan();
+            }
+        }
+    }
 
+    public static void clothWoman(Cloth[] cloths) {
+        for (Cloth cloth : cloths) {
+            if (cloth instanceof WomanCloth) {
+                ((WomanCloth) cloth).clotheWoman();
+            }
+        }
     }
 }

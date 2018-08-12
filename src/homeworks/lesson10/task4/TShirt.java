@@ -1,7 +1,7 @@
 package homeworks.lesson10.task4;
 
 public class TShirt extends Cloth implements ManCloth, WomanCloth {
-    public TShirt(int size, double price, String colour) {
+    public TShirt(Size size, double price, String colour) {
         super(size, price, colour);
     }
 

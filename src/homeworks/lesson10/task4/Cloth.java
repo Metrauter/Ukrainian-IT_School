@@ -3,21 +3,21 @@ package homeworks.lesson10.task4;
 import java.util.Objects;
 
 public abstract class Cloth {
-    int size;
+    Size size;
     double price;
     String colour;
 
-    public Cloth(int size, double price, String colour) {
+    public Cloth(Size size, double price, String colour) {
         this.size = size;
         this.price = price;
         this.colour = colour;
     }
 
-    public int getSize() {
+    public Size getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(Size size) {
         this.size = size;
     }
 
