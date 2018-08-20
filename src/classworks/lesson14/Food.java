@@ -5,7 +5,7 @@ package classworks.lesson14;
  */
 public class Food {
     public void prepare(Cookable c) {
-        c.cook();
+        c.cook("Жарим картошку");
     }
 
     public static void main(String[] args) {
@@ -18,6 +18,6 @@ public class Food {
 //                System.out.println("Жарим картошку");
 //            }
 //        };
-        food.prepare(()-> System.out.println("Жарим картошку"));
+        food.prepare(System.out::println);
     }
 }
