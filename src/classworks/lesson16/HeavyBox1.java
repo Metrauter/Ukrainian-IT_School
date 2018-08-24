@@ -25,4 +25,14 @@ public class HeavyBox1 extends Box6 implements Comparable<HeavyBox1> {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "HeavyBox1{" +
+                "weight=" + weight +
+                ", width=" + width +
+                ", height=" + height +
+                ", depth=" + depth +
+                "} " + super.toString();
+    }
 }
