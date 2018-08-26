@@ -1,9 +1,9 @@
-package homeworks.lesson12;
+package homeworks.lesson12.task12;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class task12 {
+public class OneTwo {
     public static void main(String[] args) {
         String regex = "[a-zA-Z]+\\s";
         String s = "One two three раз два три one1 two2 123";
