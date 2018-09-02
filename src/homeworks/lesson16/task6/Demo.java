@@ -1,37 +1,37 @@
-package homeworks.lesson16;
+package homeworks.lesson16.task6;
 
 import java.util.Comparator;
 import java.util.Iterator;
 
 public class Demo {
     public static void main(String[] args) {
-        Category phone = new Category("Phone", new Comparator<Item>() {
+        Category phoneN = new Category("PhoneN", new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
                 return o1.getName().compareTo(o2.getName());
             }
         });
-        fillCategory(phone);
-        printItems(phone);
+        fillCategory(phoneN);
+        printItems(phoneN);
 
-        phone = new Category("Phone", new Comparator<Item>() {
+        Category phoneD = new Category("PhoneD", new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
                 return Double.compare(o1.getPrice(), o2.getPrice());
             }
         });
-        fillCategory(phone);
-        printItems(phone);
+        fillCategory(phoneD);
+        printItems(phoneD);
 
-        phone = new Category("Phone", new Comparator<Item>() {
+        Category phoneR = new Category("PhoneR", new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
                 int ratingDiff =  Integer.compare(o1.getRating(), o2.getRating());
                 return ratingDiff != 0 ? ratingDiff : 1;
             }
         });
-        fillCategory(phone);
-        printItems(phone);
+        fillCategory(phoneR);
+        printItems(phoneR);
     }
 
     public static void fillCategory(Category category) {

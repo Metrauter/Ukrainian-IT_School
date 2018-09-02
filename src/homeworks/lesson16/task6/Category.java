@@ -1,4 +1,4 @@
-package homeworks.lesson16;
+package homeworks.lesson16.task6;
 
 import java.util.Collection;
 import java.util.Comparator;

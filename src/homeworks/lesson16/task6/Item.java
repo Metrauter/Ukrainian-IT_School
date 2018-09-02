@@ -1,4 +1,4 @@
-package homeworks.lesson16;
+package homeworks.lesson16.task6;
 
 public class Item {
     private String name;
