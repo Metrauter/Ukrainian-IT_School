@@ -1,24 +1,22 @@
-package classworks.lesson19;
+package classworks.lesson20;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.io.IOException;
 
 public class FileWriterReaderDemo {
     public static void main(String[] args) {
-        try (FileReader fr = new FileReader("src/classworks/lesson19/a.txt");
-             FileWriter fw = new FileWriter("src/classworks/lesson19/b.txt")) {
+        try (BufferedReader br = new BufferedReader(
+                new FileReader("src/classworks/lesson19/b.txt"));
+             BufferedWriter bw = new BufferedWriter(
+                     new FileWriter("src/classworks/lesson19/a.txt"))) {
 
-            char[] ch = new char[50];
-            fr.read(ch);
-            int size = fr.read(ch);
-            for (int i = 0; i < size; i++) {
-                fw.write(ch[i]);
+            String s = "Привет мир!";
+            while ((s = br.readLine()) != null) {
+                bw.write(s);
+                bw.newLine();
             }
-
-        } catch (IOException e) {
-            System.out.print(e.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 }

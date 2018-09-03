@@ -4,11 +4,15 @@ public class Item {
     private String name;
     private double price;
     private int rating;
+    private int id;
+    private  static  int count=0;
 
     public Item(String name, double price, int rating) {
         this.name = name;
         this.price = price;
         this.rating = rating;
+        id=count;
+        count++;
     }
 
     public String getName() {

@@ -23,7 +23,7 @@ public class Shop {
         Item item9 = new Item("Alkatel 54", 2524, 1);
         Item item10 = new Item("Siemens M65", 4050, 2);
 
-        Set<Item> set = new HashSet<>();
+        Set<Item> set = new HashSet<>();//map
         set.add(item1);
         set.add(item2);
         set.add(item3);
@@ -57,7 +57,8 @@ public class Shop {
                         System.out.println(category.getName());
                         break;
                     case 3:
-                        while (true) {
+                        boolean a = true;
+                        while (a) {
                             System.out.println("1. По цене");
                             System.out.println("2. По имени");
                             System.out.println("3. По рейтингу");
@@ -75,7 +76,7 @@ public class Shop {
                                         print(set, new ProductRateComparator());
                                         break;
                                     case 4:
-                                        System.exit(0);
+                                        a = false;
                                 }
                             } else {
                                 System.out.println("Неправильный выбор");
@@ -83,7 +84,7 @@ public class Shop {
                             }
                         }
                     case 4:
-
+                        System.out.println("");
                     case 5:
                     case 6:
                         System.exit(0);
