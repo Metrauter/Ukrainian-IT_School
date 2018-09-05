@@ -5,14 +5,30 @@ public class Item {
     private double price;
     private int rating;
     private int id;
-    private  static  int count=0;
+    private static int count = 0;
 
     public Item(String name, double price, int rating) {
         this.name = name;
         this.price = price;
         this.rating = rating;
-        id=count;
-        count++;
+        id = count;
+        id++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Item.count = count;
     }
 
     public String getName() {

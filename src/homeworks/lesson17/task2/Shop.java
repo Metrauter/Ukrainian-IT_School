@@ -23,20 +23,15 @@ public class Shop {
         Item item9 = new Item("Alkatel 54", 2524, 1);
         Item item10 = new Item("Siemens M65", 4050, 2);
 
-        Set<Item> set = new HashSet<>();//map
-        set.add(item1);
-        set.add(item2);
-        set.add(item3);
-        set.add(item4);
-        set.add(item5);
-        set.add(item6);
-        set.add(item7);
-        set.add(item8);
-        set.add(item9);
-        set.add(item10);
+        Set<Item> set = getItems(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10);
 
         Category category = new Category("Телефоны", set);
 
+        mainMenu(login, password, confPassword, scn, auth, set, category);
+        return;
+    }
+
+    public static void mainMenu(String login, String password, String confPassword, Scanner scn, Authentication auth, Set<Item> set, Category category) {
         while (true) {
             System.out.println("Выберите пункт: ");
             System.out.println("1. Войти в магазин");
@@ -57,48 +52,82 @@ public class Shop {
                         System.out.println(category.getName());
                         break;
                     case 3:
-                        boolean a = true;
-                        while (a) {
-                            System.out.println("1. По цене");
-                            System.out.println("2. По имени");
-                            System.out.println("3. По рейтингу");
-                            System.out.println("4. Вернуться в магазин");
-                            if (scn.hasNextInt()) {
-                                int b = scn.nextInt();
-                                switch (b) {
-                                    case 1:
-                                        print(set, new PriceComparator());
-                                        break;
-                                    case 2:
-                                        print(set, new ProductNameComparator());
-                                        break;
-                                    case 3:
-                                        print(set, new ProductRateComparator());
-                                        break;
-                                    case 4:
-                                        a = false;
-                                }
-                            } else {
-                                System.out.println("Неправильный выбор");
-                                System.exit(0);
-                            }
-                        }
+                        choiseSort(scn, set);
+                        break;
                     case 4:
-                        System.out.println("");
+
                     case 5:
+
                     case 6:
                         System.exit(0);
                 }
             } else {
                 System.out.println("Неправильный выбор");
-                break;
+                System.exit(0);
             }
         }
     }
 
-    public static void print(Set<Item> set, Comparator<Item> comparator) {
+    public static Set<Item> getItems(Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8, Item item9, Item item10) {
+        Set<Item> map = new HashSet<>();
+        map.add(item1);
+        map.add(item2);
+        map.add(item3);
+        map.add(item4);
+        map.add(item5);
+        map.add(item6);
+        map.add(item7);
+        map.add(item8);
+        map.add(item9);
+        map.add(item10);
+        return map;
+    }
+
+    public static void choiseSort(Scanner scn, Set<Item> set) {
+        int b = 0;
+        do {
+            System.out.println("Сортировать товары");
+            System.out.println("1. По цене");
+            System.out.println("2. По имени");
+            System.out.println("3. По рейтингу");
+            System.out.println("4. Вернуться в магазин");
+            if (scn.hasNextInt()) {
+                b = scn.nextInt();
+                switch (b) {
+                    case 1:
+                        print(set, new PriceComparator());
+
+                        break;
+                    case 2:
+                        print(set, new ProductNameComparator());
+                        break;
+                    case 3:
+                        print(set, new ProductRateComparator());
+                        break;
+                    case 4:
+                    default:
+                        return;
+                }
+            } else {
+                System.out.println("Неправильный выбор");
+                System.exit(0);
+            }
+        } while (b != 4);
+    }
+
+    public static void print(Scanner scn, Set<Item> set, Comparator<Item> comparator) {
         Set<Item> newSet = new TreeSet<>(comparator);
         newSet.addAll(set);
         System.out.println(newSet);
+
+        ArrayList<Item> choice = new ArrayList<Item>();
+        System.out.println("введите название продукта");
+        String choiceProduct = scn.next();
+        for (int i = 0; i < newSet.size(); i++) {
+            if (newSet.get(i).getName().equals(choiceProduct)) {
+                choice.add(newSet.get(i));
+                System.out.println("в корзине находится " + choice.get(i).getName());
+            }
+        }
     }
 }
