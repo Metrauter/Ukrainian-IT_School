@@ -1,16 +1,17 @@
 package homeworks.lesson17.task2;
 
 import homeworks.lesson16.task6.Item;
-import java.util.Set;
+
+import java.util.Map;
 
 
 public class Category {
     private String name;
-    private Set<Item> itemSet;
+    private Map<Integer, Item> itemMap;
 
-    public Category(String name, Set<Item> itemSet) {
+    public Category(String name, Map<Integer, Item> itemMap) {
         this.name = name;
-        this.itemSet = itemSet;
+        this.itemMap = itemMap;
     }
 
     public String getName() {
@@ -21,12 +22,12 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Item> getItemSet() {
-        return itemSet;
+    public  Map<Integer, Item> getItemMap() {
+        return itemMap;
     }
 
-    public void setItemSet(Set<Item> itemSet) {
-        this.itemSet = itemSet;
+    public void setItemMap( Map<Integer, Item> itemMap) {
+        this.itemMap = itemMap;
     }
 
     @Override
@@ -37,13 +38,13 @@ public class Category {
         Category category = (Category) o;
 
         if (!name.equals(category.name)) return false;
-        return itemSet != null ? itemSet.equals(category.itemSet) : category.itemSet == null;
+        return itemMap != null ? itemMap.equals(category.itemMap) : category.itemMap == null;
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + (itemSet != null ? itemSet.hashCode() : 0);
+        result = 31 * result + (itemMap != null ? itemMap.hashCode() : 0);
         return result;
     }
 
@@ -51,7 +52,7 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "name: '" + name + '\'' +
-                ", itemSet: " + itemSet +
+                ", itemSet: " + itemMap +
                 '}';
     }
 }

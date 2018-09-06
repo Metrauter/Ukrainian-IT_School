@@ -1,10 +1,13 @@
 package homeworks.lesson16.task6;
 
+import java.util.Objects;
+import java.util.TreeMap;
+
 public class Item {
     private String name;
     private double price;
     private int rating;
-    private int id;
+    private static int id;
     private static int count = 0;
 
     public Item(String name, double price, int rating) {
@@ -12,10 +15,10 @@ public class Item {
         this.price = price;
         this.rating = rating;
         id = count;
-        id++;
+        count++;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
@@ -59,23 +62,15 @@ public class Item {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Item)) return false;
-
-        Item product = (Item) o;
-
-        if (Double.compare(product.price, price) != 0) return false;
-        if (rating != product.rating) return false;
-        return name.equals(product.name);
+        Item item = (Item) o;
+        return Double.compare(item.getPrice(), getPrice()) == 0 &&
+                getRating() == item.getRating() &&
+                Objects.equals(getName(), item.getName());
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = name.hashCode();
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + rating;
-        return result;
+        return Objects.hash(getName(), getPrice(), getRating());
     }
 
     @Override
