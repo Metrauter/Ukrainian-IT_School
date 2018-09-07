@@ -7,18 +7,17 @@ public class Item {
     private String name;
     private double price;
     private int rating;
-    private static int id;
-    private static int count = 0;
+    private  int id;
+    private static int count = 1;
 
     public Item(String name, double price, int rating) {
         this.name = name;
         this.price = price;
         this.rating = rating;
-        id = count;
-        count++;
+        id = count++;
     }
 
-    public static int getId() {
+    public  int getId() {
         return id;
     }
 

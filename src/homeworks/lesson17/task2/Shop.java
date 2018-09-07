@@ -3,9 +3,7 @@ package homeworks.lesson17.task2;
 
 import homeworks.lesson16.task6.Item;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Shop {
     public static void main(String[] args) {
@@ -59,7 +57,10 @@ public class Shop {
                         choiseSort(scn, map);
                         break;
                     case 4:
-
+                        for (Map.Entry e : map.entrySet()) {
+                            System.out.println(e.getKey() + " " + e.getValue());
+                        }
+                        break;
                     case 5:
 
                     case 6:
@@ -74,16 +75,16 @@ public class Shop {
 
     public static Map<Integer, Item> getItems(Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8, Item item9, Item item10) {
         Map<Integer, Item> map = new HashMap<>();
-        map.put(Item.getId(), item1);
-        map.put(Item.getId(), item2);
-        map.put(Item.getId(), item3);
-        map.put(Item.getId(), item4);
-        map.put(Item.getId(), item5);
-        map.put(Item.getId(), item6);
-        map.put(Item.getId(), item7);
-        map.put(Item.getId(), item8);
-        map.put(Item.getId(), item9);
-        map.put(Item.getId(), item10);
+        map.put(item1.getId(), item1);
+        map.put(item2.getId(), item2);
+        map.put(item3.getId(), item3);
+        map.put(item4.getId(), item4);
+        map.put(item5.getId(), item5);
+        map.put(item6.getId(), item6);
+        map.put(item7.getId(), item7);
+        map.put(item8.getId(), item8);
+        map.put(item9.getId(), item9);
+        map.put(item10.getId(), item10);
         return map;
     }
 
@@ -99,20 +100,14 @@ public class Shop {
                 b = scn.nextInt();
                 switch (b) {
                     case 1:
-
-                        for (Map.Entry e : map.entrySet()) {
-
-
-                            System.out.println(e.getKey() + " " + e.getValue());
-                        }
-//                        print(map, new PriceComparator(map));
+                        print(map, new PriceComparator(map));
                         break;
-//                    case 2:
-//                        print(map, new ProductNameComparator());
-//                        break;
-//                    case 3:
-//                        print(map, new ProductRateComparator());
-//                        break;
+                    case 2:
+                        print(map, new ProductNameComparator());
+                        break;
+                    case 3:
+                        print(map, new ProductRateComparator());
+                        break;
                     case 4:
                     default:
                         return;
@@ -124,14 +119,12 @@ public class Shop {
         } while (b != 4);
     }
 
-//    public static void print(Map<Integer, Item> map, Comparator<Item> comparator) {
-//        TreeMap<Integer, Item> newMap = new TreeMap<Integer, Item>(comparator);
-//        newMap.putAll(map);
-//        System.out.println(newMap);
+    public static void print(Map<Integer, Item> map, Comparator<Item> comparator) {
+        Set<Item> items = new TreeSet(comparator);
+        items.addAll(map.values());
+        System.out.println(items);
+    }
 
-//        map.putAll(map);
-//        map.sort(comparator);
-//        System.out.println(list);
 
 //    public static void bucket(Bucket bucket, Scanner scn, Item item) {
 //        System.out.println("введите название продукта:");
