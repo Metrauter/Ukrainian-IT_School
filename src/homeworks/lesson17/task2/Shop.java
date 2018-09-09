@@ -3,16 +3,20 @@ package homeworks.lesson17.task2;
 
 import homeworks.lesson16.task6.Item;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Shop {
+    private static List<Item> bucket;
+    private static double sumPrice = 0;
+
     public static void main(String[] args) {
         String login = "Serhii";
         String password = "123456";
         String confPassword = "123456";
         Scanner scn = new Scanner(System.in);
         Authentication auth = new Authentication();
-        Bucket bucket = new Bucket();
 
         Item item1 = new Item("Nokia 3310", 1340, 3);
         Item item2 = new Item("Apple 6s", 1858, 5);
@@ -30,10 +34,9 @@ public class Shop {
         Category category = new Category("Телефоны", map);
 
         mainMenu(login, password, confPassword, scn, auth, map, category);
-        return;
     }
 
-    public static void mainMenu(String login, String password, String confPassword, Scanner scn, Authentication auth, Map<Integer, Item> map, Category category) {
+    private static void mainMenu(String login, String password, String confPassword, Scanner scn, Authentication auth, Map<Integer, Item> map, Category category) {
         while (true) {
             System.out.println("Выберите пункт: ");
             System.out.println("1. Войти в магазин");
@@ -60,8 +63,25 @@ public class Shop {
                         for (Map.Entry e : map.entrySet()) {
                             System.out.println(e.getKey() + " " + e.getValue());
                         }
+                        bucket(scn, map);
                         break;
                     case 5:
+                        System.out.println("Вы приобрели: " + getList());
+                        System.out.println("Общая стоимость товаров: " + sumPrice);
+                        printWriter();
+
+//                        try (FileOutputStream fs = new FileOutputStream("bucket.ser");
+//                             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+//                            os.writeObject(bucket);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        try (FileInputStream fis = new FileInputStream("bucket.ser");
+//                             ObjectInputStream ois = new ObjectInputStream(fis)) {
+//                            bucket = () ois.readObject();
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
 
                     case 6:
                         System.exit(0);
@@ -73,22 +93,50 @@ public class Shop {
         }
     }
 
-    public static Map<Integer, Item> getItems(Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8, Item item9, Item item10) {
-        Map<Integer, Item> map = new HashMap<>();
-        map.put(item1.getId(), item1);
-        map.put(item2.getId(), item2);
-        map.put(item3.getId(), item3);
-        map.put(item4.getId(), item4);
-        map.put(item5.getId(), item5);
-        map.put(item6.getId(), item6);
-        map.put(item7.getId(), item7);
-        map.put(item8.getId(), item8);
-        map.put(item9.getId(), item9);
-        map.put(item10.getId(), item10);
+    private static void printWriter() {
+        try {
+            PrintWriter pw = new PrintWriter("src/homeworks/lesson17/task2/bucket.txt");
+            pw.println("Вы приобрели: " + getList().toString());
+            pw.println("Общая стоимость: " + sumPrice);
+            pw.close();
+            System.out.println("Запись в файл произведена");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void bucket(Scanner scn, Map<Integer, Item> map) {
+        bucket = new LinkedList();
+        int i = 0;
+        do {
+            System.out.println("Введите номер продукта:");
+            i = scn.nextInt();
+            if (i == 0) {
+                return;
+            }
+            Item cItem = map.get(i);
+            sumPrice += map.get(i).getPrice();
+            bucket.add(cItem);
+            System.out.println("В корзине находится: " + bucket);
+            System.out.println("Общая стоимость товаров : " + sumPrice);
+            System.out.println("Для возврата в меню введите 0");
+        } while (i <= map.size());
+
+    }
+
+    private static List<Item> getList() {
+        return bucket;
+    }
+
+    private static Map<Integer, Item> getItems(Item... items) {
+        Map<Integer, Item> map = new LinkedHashMap<>();
+        for (Item item : items) {
+            map.put(item.getId(), item);
+        }
         return map;
     }
 
-    public static void choiseSort(Scanner scn, Map<Integer, Item> map) {
+    private static void choiseSort(Scanner scn, Map<Integer, Item> map) {
         int b = 0;
         do {
             System.out.println("Сортировать товары");
@@ -100,7 +148,7 @@ public class Shop {
                 b = scn.nextInt();
                 switch (b) {
                     case 1:
-                        print(map, new PriceComparator(map));
+                        print(map, new PriceComparator());
                         break;
                     case 2:
                         print(map, new ProductNameComparator());
@@ -124,18 +172,5 @@ public class Shop {
         items.addAll(map.values());
         System.out.println(items);
     }
-
-
-//    public static void bucket(Bucket bucket, Scanner scn, Item item) {
-//        System.out.println("введите название продукта:");
-//        int choiceProduct = scn.nextInt();
-//        for (int i = 0; i < newSet.size(); i++) {
-//            if (choiceProduct == Item.getCount())){
-//                bucket.addItem(item);
-//                System.out.println("в корзине находится " + bucket);
-//
-//            }
-//        }
-//    }
 }
 
