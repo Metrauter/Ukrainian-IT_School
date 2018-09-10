@@ -3,8 +3,7 @@ package homeworks.lesson17.task2;
 
 import homeworks.lesson16.task6.Item;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
 
 public class Shop {
@@ -66,22 +65,22 @@ public class Shop {
                         bucket(scn, map);
                         break;
                     case 5:
-                        System.out.println("Вы приобрели: " + getList());
+                        System.out.println("Вы приобрели: " + bucket);
                         System.out.println("Общая стоимость товаров: " + sumPrice);
                         printWriter();
 
-//                        try (FileOutputStream fs = new FileOutputStream("bucket.ser");
-//                             ObjectOutputStream os = new ObjectOutputStream(fs)) {
-//                            os.writeObject(bucket);
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                        try (FileInputStream fis = new FileInputStream("bucket.ser");
-//                             ObjectInputStream ois = new ObjectInputStream(fis)) {
-//                            bucket = () ois.readObject();
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
+                        try (FileOutputStream fs = new FileOutputStream("bucket.ser");
+                             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+                            os.writeObject(bucket);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        try (FileInputStream fis = new FileInputStream("bucket.ser");
+                             ObjectInputStream ois = new ObjectInputStream(fis)) {
+                            bucket = (List<Item>) ois.readObject();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                       }
 
                     case 6:
                         System.exit(0);
@@ -94,11 +93,11 @@ public class Shop {
     }
 
     private static void printWriter() {
-        try {
-            PrintWriter pw = new PrintWriter("src/homeworks/lesson17/task2/bucket.txt");
+        try ( PrintWriter pw = new PrintWriter("src/homeworks/lesson17/task2/bucket.txt");){
+
             pw.println("Вы приобрели: " + getList().toString());
             pw.println("Общая стоимость: " + sumPrice);
-            pw.close();
+          //  pw.close();
             System.out.println("Запись в файл произведена");
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -156,7 +155,7 @@ public class Shop {
                     case 3:
                         print(map, new ProductRateComparator());
                         break;
-                    case 4:
+                    //case 4:
                     default:
                         return;
                 }
