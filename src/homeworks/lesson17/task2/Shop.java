@@ -43,7 +43,8 @@ public class Shop {
             System.out.println("3. Сортировка товаров");
             System.out.println("4. Выбор товара");
             System.out.println("5. Покупка товара");
-            System.out.println("6. Выйти с магазина");
+            System.out.println("6. Deserialize");
+            System.out.println("7. Выйти с магазина");
             if (scn.hasNextInt()) {
                 int s = scn.nextInt();
                 switch (s) {
@@ -68,21 +69,12 @@ public class Shop {
                         System.out.println("Вы приобрели: " + bucket);
                         System.out.println("Общая стоимость товаров: " + sumPrice);
                         printWriter();
-
-                        try (FileOutputStream fs = new FileOutputStream("bucket.ser");
-                             ObjectOutputStream os = new ObjectOutputStream(fs)) {
-                            os.writeObject(bucket);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        try (FileInputStream fis = new FileInputStream("bucket.ser");
-                             ObjectInputStream ois = new ObjectInputStream(fis)) {
-                            bucket = (List<Item>) ois.readObject();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                       }
-
+                        serialized();
+                        break;
                     case 6:
+                        deserialized();
+                        break;
+                    case 7:
                         System.exit(0);
                 }
             } else {
@@ -92,12 +84,29 @@ public class Shop {
         }
     }
 
-    private static void printWriter() {
-        try ( PrintWriter pw = new PrintWriter("src/homeworks/lesson17/task2/bucket.txt");){
+    private static void deserialized() {
+        try (FileInputStream fis = new FileInputStream("bucket.ser");
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            bucket = (List<Item>) ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-            pw.println("Вы приобрели: " + getList().toString());
+    private static void serialized() {
+        try (FileOutputStream fs = new FileOutputStream("bucket.ser");
+             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+            os.writeObject(bucket);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void printWriter() {
+        try (PrintWriter pw = new PrintWriter("src/homeworks/lesson17/task2/bucket.txt");) {
+            pw.println("Вы приобрели: " + bucket.toString());
             pw.println("Общая стоимость: " + sumPrice);
-          //  pw.close();
+            //  pw.close();
             System.out.println("Запись в файл произведена");
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -121,10 +130,6 @@ public class Shop {
             System.out.println("Для возврата в меню введите 0");
         } while (i <= map.size());
 
-    }
-
-    private static List<Item> getList() {
-        return bucket;
     }
 
     private static Map<Integer, Item> getItems(Item... items) {

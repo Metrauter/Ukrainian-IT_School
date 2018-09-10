@@ -1,9 +1,9 @@
 package homeworks.lesson16.task6;
 
+import java.io.Serializable;
 import java.util.Objects;
-import java.util.TreeMap;
 
-public class Item {
+public class Item implements Serializable {
     private String name;
     private double price;
     private int rating;
