@@ -106,7 +106,6 @@ public class Shop {
         try (PrintWriter pw = new PrintWriter("src/homeworks/lesson17/task2/bucket.txt");) {
             pw.println("Вы приобрели: " + bucket.toString());
             pw.println("Общая стоимость: " + sumPrice);
-            //  pw.close();
             System.out.println("Запись в файл произведена");
         } catch (IOException e) {
             System.out.println(e.getMessage());
