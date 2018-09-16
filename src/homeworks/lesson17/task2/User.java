@@ -1,10 +1,7 @@
-package classworks.lesson14;
+package homeworks.lesson17.task2;
 
 import java.util.Objects;
 
-/**
- * Created by Student on 13.08.2018.
- */
 public class User {
     private String login, password;
 
@@ -30,7 +27,7 @@ public class User {
         this.password = password;
     }
 
-    public User (){
+    public User(){
         login = "";
         password = "";
     }

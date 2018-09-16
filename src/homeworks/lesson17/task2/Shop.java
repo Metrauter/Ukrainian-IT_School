@@ -1,6 +1,7 @@
 package homeworks.lesson17.task2;
 
 
+import classworks.lesson14.User;
 import homeworks.lesson16.task6.Item;
 
 import java.io.*;
@@ -11,9 +12,6 @@ public class Shop {
     private static double sumPrice = 0;
 
     public static void main(String[] args) {
-        String login = "Serhii";
-        String password = "123456";
-        String confPassword = "123456";
         Scanner scn = new Scanner(System.in);
         Authentication auth = new Authentication();
 
@@ -32,10 +30,10 @@ public class Shop {
 
         Category category = new Category("Телефоны", map);
 
-        mainMenu(login, password, confPassword, scn, auth, map, category);
+        mainMenu(scn, auth, map, category);
     }
 
-    private static void mainMenu(String login, String password, String confPassword, Scanner scn, Authentication auth, Map<Integer, Item> map, Category category) {
+    private static void mainMenu(Scanner scn, Authentication auth, Map<Integer, Item> map, Category category) {
         while (true) {
             System.out.println("Выберите пункт: ");
             System.out.println("1. Войти в магазин");
@@ -49,9 +47,7 @@ public class Shop {
                 int s = scn.nextInt();
                 switch (s) {
                     case 1:
-                        System.out.println("Вы успешно вошли в магазин!\n");
-                        System.out.println("Ваши данные:");
-                        auth.isAuthenticated(login, password, confPassword);
+                        authentication(scn, auth);
                         break;
                     case 2:
                         System.out.println(category.getName());
@@ -82,6 +78,20 @@ public class Shop {
                 System.exit(0);
             }
         }
+    }
+
+    private static void authentication(Scanner scn, Authentication auth) {
+        System.out.println("Введите логин и пароль:\n");
+        String login = scn.next();
+        String password = scn.next();
+        String confPassword = scn.next();
+        if (auth.isAuthenticated(login, password, confPassword)) {
+            User user = new User(login, password);
+        } else {
+            User guest = new User();
+        }
+        System.out.println("Ваши данные:");
+        System.out.printf("%s%n%s%n%s%n", login, password, confPassword);
     }
 
     private static void deserialized() {
